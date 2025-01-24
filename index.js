@@ -5,6 +5,14 @@ const dotenv = require('dotenv');
 
 dotenv.config();
 const app = express();
+// Ruta health check
+app.get('/health', (req, res) => {
+  res.status(200).json({
+    status: 'ok',
+    message: 'API funcionando correctamente',
+    timestamp: new Date().toISOString(),
+  });
+});
 
 // Middlewares
 app.use(express.json());
