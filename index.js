@@ -17,7 +17,6 @@ app.get('/health', (req, res) => {
 // Middlewares
 app.use(express.json());
 app.use(cors());
-app.use('/uploads', express.static('uploads'));
 
 // Conectar a MongoDB
 mongoose
@@ -28,8 +27,10 @@ mongoose
 // Rutas
 const requestRoutes = require('./src/routes/requestRoutes');
 const adminRoutes = require('./src/routes/adminRoutes');
+const studentRoutes = require('./src/routes/studentRoutes');
 app.use('/requests', requestRoutes);
 app.use('/admin', adminRoutes);
+app.use('/students', studentRoutes);
 
 // Inicia el servidor
 const PORT = process.env.PORT || 5000;
