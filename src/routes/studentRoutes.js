@@ -82,4 +82,15 @@ router.get('/cedula/:studentId', async (req, res) => {
   }
 });
 
+// Verificar el estado de la API
+router.get('/health', (req, res) => {
+  res.status(200).json({
+    status: 'ok',
+    message: 'API funcionando correctamente',
+    timestamp: new Date().toISOString(),
+  });
+});
+
+
 module.exports = router;
+
