@@ -7,9 +7,9 @@ const router = express.Router();
 // Crear un nuevo estudiante (PROTEGIDA)
 router.post('/', authMiddleware, async (req, res) => {
   try {
-    const { studentId, name, email, semester } = req.body;
+    const { studentId, name, email, semester , last_name } = req.body;
 
-    const newStudent = new Student({ studentId, name, email, semester });
+    const newStudent = new Student({ studentId, name, email, semester, last_name});
     await newStudent.save();
     res.status(201).send('Estudiante creado con éxito.');
   } catch (error) {
@@ -31,10 +31,10 @@ router.get('/', authMiddleware, async (req, res) => {
 // Editar un estudiante por su ID (PROTEGIDA)
 router.put('/:id', authMiddleware, async (req, res) => {
   try {
-    const { name, email, semester } = req.body;
+    const { name, email, semester , last_name} = req.body;
     const updatedStudent = await Student.findByIdAndUpdate(
       req.params.id,
-      { name, email, semester },
+      { name, email, semester, last_name },
       { new: true }
     );
 
