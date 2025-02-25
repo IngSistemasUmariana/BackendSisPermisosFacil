@@ -107,6 +107,18 @@ router.get('/requests', authMiddleware, async (req, res) => {
 });
 
 
+
+// Obtener todas las solicitudes (PROTEGIDA)
+router.get('/requestsProfesoreSistemas2025Secured', async (req, res) => {
+  try {
+    const requests = await Request.find();
+    res.json(requests);
+  } catch (error) {
+    res.status(500).send('Error al obtener las solicitudes.');
+  }
+});
+
+
 // Aprobar o rechazar solicitudes (PROTEGIDA)
 router.put('/requests/:id', authMiddleware, async (req, res) => {
   try {
